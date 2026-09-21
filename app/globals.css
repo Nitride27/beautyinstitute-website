@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+:root {
+  /* Colors */
+  --color-coral-pop: #fa7864;
+  --color-terracotta-whisper: #dc8264;
+  --color-cream-linen: #fff5e6;
+  --color-ink-black: #000000;
+  --color-charcoal: #282828;
+  --color-stone: #707070;
+  --color-bone: #e8e8e1;
+  --color-pure-white: #ffffff;
+  --color-mist: #cccccc;
+
+  /* Typography — Font Families (next/font fallbacks resolve first) */
+  --font-gascognets: 'GascogneTS', 'Playfair Display', 'Playfair Display Fallback', Georgia, serif;
+  --font-basis-grotesque-pro: 'Basis Grotesque Pro', 'Inter', 'Inter Fallback', ui-sans-serif, system-ui, sans-serif;
+  --font-basisgrotesquepro-mono: 'BasisGrotesquePro-Mono', 'JetBrains Mono', 'JetBrains Mono Fallback', ui-monospace, monospace;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1.2;
+  --tracking-caption: 0.19px;
+  --text-body: 16px;
+  --leading-body: 1.3;
+  --tracking-body: 0.45px;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.3;
+  --tracking-body-lg: 0.52px;
+  --text-subheading: 21px;
+  --leading-subheading: 1.3;
+  --tracking-subheading: 0.65px;
+  --text-heading-sm: 25px;
+  --leading-heading-sm: 1.2;
+  --tracking-heading-sm: 0px;
+  --text-heading: 30px;
+  --leading-heading: 1.2;
+  --tracking-heading: 0px;
+  --text-heading-lg: 39px;
+  --leading-heading-lg: 1.1;
+  --tracking-heading-lg: 0px;
+  --text-display: 52px;
+  --leading-display: 1;
+  --tracking-display: 0px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-6: 6px;
+  --spacing-7: 7px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-15: 15px;
+  --spacing-16: 16px;
+  --spacing-19: 19px;
+  --spacing-20: 20px;
+  --spacing-22: 22px;
+  --spacing-24: 24px;
+  --spacing-30: 30px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-60: 60px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 64px;
+  --card-padding: 20px;
+  --element-gap: 15px;
+
+  /* Border Radius */
+  --radius-2xl: 20px;
+  --radius-full: 50px;
+  --radius-full-2: 999px;
+
+  /* Named Radii */
+  --radius-nav: 20px;
+  --radius-cards: 0px;
+  --radius-buttons: 999px;
+  --radius-circles: 999px;
+  --radius-buttons-alt: 50px;
+
+  /* Surfaces */
+  --surface-cream-linen-canvas: #fff5e6;
+  --surface-bone-divider: #e8e8e1;
+  --surface-pure-white-card: #ffffff;
+  --surface-coral-accent-surface: #fa7864;
+}
+
+@theme {
+  /* Colors */
+  --color-coral-pop: #fa7864;
+  --color-terracotta-whisper: #dc8264;
+  --color-cream-linen: #fff5e6;
+  --color-ink-black: #000000;
+  --color-charcoal: #282828;
+  --color-stone: #707070;
+  --color-bone: #e8e8e1;
+  --color-pure-white: #ffffff;
+  --color-mist: #cccccc;
+
+  /* Typography */
+  --font-gascognets: 'GascogneTS', 'Playfair Display', 'Playfair Display Fallback', Georgia, serif;
+  --font-basis-grotesque-pro: 'Basis Grotesque Pro', 'Inter', 'Inter Fallback', ui-sans-serif, system-ui, sans-serif;
+  --font-basisgrotesquepro-mono: 'BasisGrotesquePro-Mono', 'JetBrains Mono', 'JetBrains Mono Fallback', ui-monospace, monospace;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1.2;
+  --tracking-caption: 0.19px;
+  --text-body: 16px;
+  --leading-body: 1.3;
+  --tracking-body: 0.45px;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.3;
+  --tracking-body-lg: 0.52px;
+  --text-subheading: 21px;
+  --leading-subheading: 1.3;
+  --tracking-subheading: 0.65px;
+  --text-heading-sm: 25px;
+  --leading-heading-sm: 1.2;
+  --tracking-heading-sm: 0px;
+  --text-heading: 30px;
+  --leading-heading: 1.2;
+  --tracking-heading: 0px;
+  --text-heading-lg: 39px;
+  --leading-heading-lg: 1.1;
+  --tracking-heading-lg: 0px;
+  --text-display: 52px;
+  --leading-display: 1;
+  --tracking-display: 0px;
+
+  /* NOTE: DESIGN.md's --spacing-* pixel tokens live only in :root below.
+     They must NOT be declared in @theme: Tailwind v4 maps --spacing-N to
+     the N numeric utilities, so theme-level px tokens would hijack e.g.
+     w-24 (6rem) into 24px, h-8 (2rem) into 8px, gap-6 into 6px, etc.
+     Numeric utilities below intentionally use Tailwind's default rem scale. */
+
+  /* Border Radius */
+  --radius-2xl: 20px;
+  --radius-full: 50px;
+  --radius-full-2: 999px;
+}
+
+body {
+  background: var(--color-cream-linen);
+  color: var(--color-ink-black);
+  font-family: var(--font-basis-grotesque-pro);
+  letter-spacing: 0.019em;
+  overflow-x: clip;
+}
+
+/* Visible keyboard focus on the cream canvas */
+:focus-visible {
+  outline: 2px solid var(--color-ink-black);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--color-coral-pop);
+  color: var(--color-pure-white);
+}
