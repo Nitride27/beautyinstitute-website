@@ -83,7 +83,7 @@ export default function Hero({ eyebrow, headline, body, ctaLabel, ctaHref }: Her
 
   if (still) {
     return (
-      <section id="site-hero" aria-label="Introduction" className="mx-auto w-full max-w-[1200px] px-4 pt-10 md:px-6">
+      <section aria-label="Introduction" className="mx-auto w-full max-w-[1200px] px-4 pt-10 md:px-6">
         <p className="font-basisgrotesquepro-mono text-[14px] uppercase tracking-[0.056em] text-coral-pop">
           {eyebrow}
         </p>
@@ -120,7 +120,6 @@ export default function Hero({ eyebrow, headline, body, ctaLabel, ctaHref }: Her
 
   return (
     <section
-      id="site-hero"
       ref={root}
       aria-label="Introduction"
       className="mx-auto grid w-full max-w-[1200px] gap-8 px-4 pt-10 md:grid-cols-2 md:items-center md:px-6"
