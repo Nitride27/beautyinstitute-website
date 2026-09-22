@@ -43,6 +43,12 @@ export default function Hero({ eyebrow, headline, body, ctaLabel, ctaHref }: Her
   useIsomorphicLayoutEffect(() => {
     if (still || !root.current) return;
     registerGsap();
+    // Phones land one photo per scroll gesture: snap the scrubbed progress
+    // to the nearest slide when scrolling stops. Desktop keeps the free
+    // continuous scrub.
+    const snapPhone = window.matchMedia("(max-width: 767px)").matches;
+    // Longer pin on phones so one flick travels roughly one photo interval.
+    const pinEnd = snapPhone ? "+=2400" : "+=1600";
     const ctx = gsap.context(() => {
       const proxy = { p: 0 };
       gsap.to(proxy, {
@@ -51,10 +57,20 @@ export default function Hero({ eyebrow, headline, body, ctaLabel, ctaHref }: Her
         scrollTrigger: {
           trigger: root.current,
           start: "top top",
-          end: "+=1600",
+          end: pinEnd,
           pin: true,
           scrub: 1,
           invalidateOnRefresh: true,
+          ...(snapPhone
+            ? {
+                snap: {
+                  snapTo: 1 / (SLIDES.length - 1),
+                  duration: { min: 0.2, max: 0.5 },
+                  delay: 0.1,
+                  ease: "power1.inOut",
+                },
+              }
+            : {}),
           onUpdate: (self) => {
             if (bar.current) bar.current.style.transform = `scaleX(${self.progress})`;
             const i = Math.min(SLIDES.length - 1, Math.round(self.progress * (SLIDES.length - 1)));
@@ -69,12 +85,12 @@ export default function Hero({ eyebrow, headline, body, ctaLabel, ctaHref }: Her
         y: -40,
         opacity: 0.2,
         ease: "none",
-        scrollTrigger: {
-          trigger: root.current,
-          start: "top top",
-          end: "+=1600",
-          scrub: true,
-        },
+          scrollTrigger: {
+            trigger: root.current,
+            start: "top top",
+            end: pinEnd,
+            scrub: true,
+          },
       });
     }, root);
     return () => ctx.revert();

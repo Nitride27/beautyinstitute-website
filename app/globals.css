@@ -153,6 +153,20 @@ body {
   overflow-x: clip;
 }
 
+/*
+ * Phones scroll vertically only: kill any sideways drift and forbid
+ * horizontal panning (pinch-zoom stays allowed). No horizontal
+ * scrollers exist below 768px, so nothing legitimate is blocked.
+ */
+@media (max-width: 767px) {
+  html,
+  body {
+    overflow-x: clip;
+    overscroll-behavior-x: none;
+    touch-action: pan-y pinch-zoom;
+  }
+}
+
 /* Visible keyboard focus on the cream canvas */
 :focus-visible {
   outline: 2px solid var(--color-ink-black);

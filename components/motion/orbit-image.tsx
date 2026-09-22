@@ -14,32 +14,24 @@ interface OrbitImageProps {
 }
 
 /**
- * "Momentum in Orbit" — slow scroll-scrubbed rotation (≤10deg) on circular
- * imagery. Disabled under reduced motion and below 768px (static image).
+ * "Momentum in Orbit" — slow continuous vinyl-style spin (one full turn
+ * every 40s, linear and seamless). Runs on all viewports, phones included;
+ * static image under reduced motion.
  */
 export default function OrbitImage({ src, alt, width, height, circle = false }: OrbitImageProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const mobile = window.matchMedia("(max-width: 767px)").matches;
-    if (reduce || mobile || !ref.current) return;
+    if (reduce || !ref.current) return;
     registerGsap();
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ref.current,
-        { rotate: -8 },
-        {
-          rotate: 8,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ref.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
-        }
-      );
+      gsap.to(ref.current, {
+        rotate: 360,
+        duration: 40,
+        repeat: -1,
+        ease: "none",
+      });
     }, ref);
     return () => ctx.revert();
   }, []);
