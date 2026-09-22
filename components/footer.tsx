@@ -21,32 +21,32 @@ export default function Footer() {
           aria-label="Footer"
           className="flex flex-wrap gap-x-6 gap-y-2 font-basis-grotesque-pro text-[14px]"
         >
-          <Link href="/about">{copy.navAbout}</Link>
-          <Link href="/courses">{copy.navPrograms}</Link>
-          <Link href="/work">{copy.navWork}</Link>
-          <Link href="/journal">{copy.navJournal}</Link>
-          <Link href="/admissions">Contact</Link>
+          <Link href="/about" className="transition-colors hover:text-terracotta-whisper">{copy.navAbout}</Link>
+          <Link href="/courses" className="transition-colors hover:text-terracotta-whisper">{copy.navPrograms}</Link>
+          <Link href="/work" className="transition-colors hover:text-terracotta-whisper">{copy.navWork}</Link>
+          <Link href="/journal" className="transition-colors hover:text-terracotta-whisper">{copy.navJournal}</Link>
+          <Link href="/admissions" className="transition-colors hover:text-terracotta-whisper">Contact</Link>
         </nav>
 
         <div className="flex items-center gap-3">
           <a
             href="#"
             aria-label="Instagram"
-            className="flex h-9 w-9 items-center justify-center rounded-[999px] border border-ink-black text-ink-black transition-colors hover:bg-ink-black hover:text-cream-linen"
+            className="flex h-9 w-9 items-center justify-center rounded-[999px] border border-ink-black text-ink-black transition-colors hover:bg-ink-black hover:text-cream-linen active:scale-95"
           >
             <InstagramIcon />
           </a>
           <a
             href="#"
             aria-label="Facebook"
-            className="flex h-9 w-9 items-center justify-center rounded-[999px] border border-ink-black text-ink-black transition-colors hover:bg-ink-black hover:text-cream-linen"
+            className="flex h-9 w-9 items-center justify-center rounded-[999px] border border-ink-black text-ink-black transition-colors hover:bg-ink-black hover:text-cream-linen active:scale-95"
           >
             <FacebookIcon />
           </a>
           <a
             href="#"
             aria-label="X"
-            className="flex h-9 w-9 items-center justify-center rounded-[999px] border border-ink-black font-basis-grotesque-pro text-[14px] transition-colors hover:bg-ink-black hover:text-cream-linen"
+            className="flex h-9 w-9 items-center justify-center rounded-[999px] border border-ink-black font-basis-grotesque-pro text-[14px] transition-colors hover:bg-ink-black hover:text-cream-linen active:scale-95"
           >
             X
           </a>

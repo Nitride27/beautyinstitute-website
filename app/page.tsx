@@ -105,10 +105,10 @@ export default function HomePage() {
               {copy.programsHeadline}
             </h2>
           </div>
-          <Link
-            href="/courses"
-            className="font-basis-grotesque-pro text-[14px] text-terracotta-whisper"
-          >
+            <Link
+              href="/courses"
+              className="font-basis-grotesque-pro text-[14px] text-terracotta-whisper transition-colors hover:text-ink-black"
+            >
             {copy.viewAll} →
           </Link>
         </div>
@@ -166,7 +166,7 @@ export default function HomePage() {
               type="button"
               aria-label="Previous testimonial"
               onClick={() => go(-1)}
-              className="flex h-8 w-8 items-center justify-center rounded-[999px] border border-ink-black bg-cream-linen"
+              className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-[999px] border border-ink-black bg-cream-linen transition-colors duration-300 hover:bg-ink-black hover:text-cream-linen active:scale-95"
             >
               <ChevronLeft size={16} />
             </button>
@@ -174,7 +174,7 @@ export default function HomePage() {
               type="button"
               aria-label="Next testimonial"
               onClick={() => go(1)}
-              className="flex h-8 w-8 items-center justify-center rounded-[999px] border border-ink-black bg-cream-linen"
+              className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-[999px] border border-ink-black bg-cream-linen transition-colors duration-300 hover:bg-ink-black hover:text-cream-linen active:scale-95"
             >
               <ChevronRight size={16} />
             </button>

@@ -1,6 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
+
+/**
+ * Layout effect on the client, passive effect on the server (avoids the
+ * useLayoutEffect SSR warning). Use for GSAP pin setups: layout-effect
+ * cleanup runs synchronously before React removes DOM, so ctx.revert()
+ * unwraps pin-spacers while the tree is still intact. A passive-effect
+ * cleanup can flush after removal, which throws removeChild NotFoundError.
+ */
+export const useIsomorphicLayoutEffect =
+  typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 /**
  * Deterministic reduced-motion flag. Starts false (matches SSR), then syncs

@@ -34,14 +34,14 @@ export default function NavBar() {
             <Link
               key={l.label + l.href}
               href={l.href}
-              className="rounded-[999px] border border-ink-black bg-transparent px-[19px] py-[6px] font-basis-grotesque-pro text-[14px] text-ink-black transition-colors hover:bg-ink-black hover:text-cream-linen"
+              className="rounded-[999px] border border-ink-black bg-transparent px-[19px] py-[6px] font-basis-grotesque-pro text-[14px] text-ink-black transition-colors hover:bg-ink-black hover:text-cream-linen active:scale-[0.97]"
             >
               {l.label}
             </Link>
           ))}
           <Link
             href="/admissions"
-            className="rounded-[999px] bg-coral-pop px-[19px] py-[6px] font-basis-grotesque-pro text-[14px] text-pure-white"
+            className="rounded-[999px] bg-coral-pop px-[19px] py-[6px] font-basis-grotesque-pro text-[14px] text-pure-white transition-colors duration-300 hover:bg-ink-black active:scale-[0.97]"
           >
             {copy.applyNow} →
           </Link>
@@ -52,7 +52,7 @@ export default function NavBar() {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-label={open ? "Close menu" : "Open menu"}
-          className="flex h-10 w-10 items-center justify-center rounded-[999px] border border-ink-black md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-[999px] border border-ink-black transition-transform active:scale-95 md:hidden"
         >
           {open ? <X size={18} /> : <Menu size={18} />}
         </button>
@@ -72,7 +72,7 @@ export default function NavBar() {
                 key={l.label + l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="rounded-[999px] border border-ink-black px-[19px] py-[8px] text-center font-basis-grotesque-pro text-[14px]"
+                className="rounded-[999px] border border-ink-black px-[19px] py-[8px] text-center font-basis-grotesque-pro text-[14px] transition-colors active:bg-bone"
               >
                 {l.label}
               </Link>
@@ -80,7 +80,7 @@ export default function NavBar() {
             <Link
               href="/admissions"
               onClick={() => setOpen(false)}
-              className="rounded-[999px] bg-coral-pop px-[19px] py-[8px] text-center font-basis-grotesque-pro text-[14px] text-pure-white"
+              className="rounded-[999px] bg-coral-pop px-[19px] py-[8px] text-center font-basis-grotesque-pro text-[14px] text-pure-white transition-colors duration-300 hover:bg-ink-black active:scale-[0.97]"
             >
               {copy.applyNow} →
             </Link>

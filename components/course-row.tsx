@@ -41,7 +41,7 @@ export default function CourseRow({ course }: { course: Course }) {
         aria-hidden
         className="flex h-8 w-8 items-center justify-center rounded-[999px] border border-ink-black transition-colors group-hover:bg-ink-black group-hover:text-cream-linen"
       >
-        <ArrowRight size={16} strokeWidth={1.5} />
+        <ArrowRight size={16} strokeWidth={1.5} className="transition-transform duration-300 group-hover:translate-x-[3px]" />
       </span>
     </Link>
     </PerspectiveIn>

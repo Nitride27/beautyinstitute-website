@@ -27,7 +27,7 @@ export default function AboutPage() {
             </p>
             <Link
               href="/courses"
-              className="mt-5 inline-block rounded-[999px] border border-terracotta-whisper px-[19px] py-[6px] font-basis-grotesque-pro text-[16px] text-terracotta-whisper transition-colors hover:bg-terracotta-whisper hover:text-pure-white"
+              className="mt-5 inline-block rounded-[999px] border border-terracotta-whisper px-[19px] py-[6px] font-basis-grotesque-pro text-[16px] text-terracotta-whisper transition-colors hover:bg-terracotta-whisper hover:text-pure-white active:scale-[0.97]"
             >
               {copy.aboutCta} →
             </Link>
@@ -157,7 +157,7 @@ export default function AboutPage() {
         </div>
         <Link
           href="/admissions"
-          className="mt-5 inline-block font-basis-grotesque-pro text-[14px] text-terracotta-whisper"
+          className="mt-5 inline-block font-basis-grotesque-pro text-[14px] text-terracotta-whisper transition-colors hover:text-ink-black"
         >
           {copy.trainersCta} →
         </Link>

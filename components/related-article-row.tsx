@@ -17,7 +17,7 @@ export default function RelatedArticleRow({ article }: { article: Article }) {
         />
       </span>
       <span>
-        <span className="block font-basis-grotesque-pro text-[14px] leading-[1.3]">
+        <span className="block font-basis-grotesque-pro text-[14px] leading-[1.3] transition-colors group-hover:underline group-hover:underline-offset-4">
           {article.title}
         </span>
         <span className="mt-[2px] block font-basis-grotesque-pro text-[12px] text-stone">

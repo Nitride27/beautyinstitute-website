@@ -101,7 +101,7 @@ export default function AdmissionsForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="rounded-[999px] bg-coral-pop px-[19px] py-[6px] font-basis-grotesque-pro text-[16px] text-pure-white disabled:opacity-60"
+        className="cursor-pointer rounded-[999px] bg-coral-pop px-[19px] py-[6px] font-basis-grotesque-pro text-[16px] text-pure-white transition-colors duration-300 hover:bg-ink-black active:scale-[0.97] disabled:opacity-60"
       >
         {isSubmitting ? "Sending…" : "Send Message →"}
       </button>

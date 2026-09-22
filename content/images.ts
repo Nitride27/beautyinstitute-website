@@ -8,12 +8,13 @@ const u = (id: string, w = 1200) =>
   `https://images.unsplash.com/${id}?q=80&w=${w}&auto=format&fit=crop`;
 
 export const images = {
-  // Home hero slideshow set (5 fresh portraits)
-  archPortrait: u("photo-1488426862026-3ee34a7d66df", 1000),
-  heroSlide2: u("photo-1594744803329-e58b31de8bf5", 800),
-  heroSlide3: u("photo-1580489944761-15a19d654956", 800),
-  heroSlide4: u("photo-1524250502761-1ac6f2e30d43", 800),
-  heroSlide5: u("photo-1570172619644-dfd03ed5d881", 800),
+  // Home hero slideshow set (5 institute-craft shots: skincare kit, makeup,
+  // salon work, wellness ritual, styling station)
+  archPortrait: u("photo-1598440947619-2c35fc9aa908", 1000),
+  heroSlide2: u("photo-1487412947147-5cebf100ffc2", 800),
+  heroSlide3: u("photo-1562322140-8baeececf3df", 800),
+  heroSlide4: u("photo-1515377905703-c4788e51af15", 800),
+  heroSlide5: u("photo-1620331311520-246422fd82f9", 800),
 
   // Find Your Path — 5 category thumbnails
   categorySkincare: u("photo-1616394584738-fc6e612e71b9", 400),

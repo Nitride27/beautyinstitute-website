@@ -27,15 +27,15 @@ export default function FilterPillGroup({ options, active, onChange }: FilterPil
             aria-pressed={selected}
             className={
               selected
-                ? "relative rounded-[999px] px-[19px] py-[6px] font-basis-grotesque-pro text-[14px] text-pure-white"
-                : "rounded-[999px] border border-ink-black bg-transparent px-[19px] py-[6px] font-basis-grotesque-pro text-[14px] text-ink-black transition-colors hover:bg-ink-black hover:text-cream-linen"
+                ? "group relative cursor-pointer rounded-[999px] px-[19px] py-[6px] font-basis-grotesque-pro text-[14px] text-pure-white active:scale-[0.97]"
+                : "cursor-pointer rounded-[999px] border border-ink-black bg-transparent px-[19px] py-[6px] font-basis-grotesque-pro text-[14px] text-ink-black transition-colors hover:bg-ink-black hover:text-cream-linen active:scale-[0.97]"
             }
           >
             {selected && (
               <motion.span
                 layoutId="filter-pill-active"
                 transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 400, damping: 32 }}
-                className="absolute inset-0 rounded-[999px] bg-coral-pop"
+                className="absolute inset-0 rounded-[999px] bg-coral-pop transition-colors duration-300 group-hover:bg-terracotta-whisper"
                 aria-hidden
               />
             )}

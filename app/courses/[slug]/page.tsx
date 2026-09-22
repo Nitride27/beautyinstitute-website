@@ -38,7 +38,7 @@ export default async function CourseDetailPage({
           </p>
           <Link
             href="/admissions"
-            className="mt-5 inline-block rounded-[999px] bg-coral-pop px-[19px] py-[6px] font-basis-grotesque-pro text-[16px] text-pure-white"
+            className="mt-5 inline-block rounded-[999px] bg-coral-pop px-[19px] py-[6px] font-basis-grotesque-pro text-[16px] text-pure-white transition-colors duration-300 hover:bg-ink-black active:scale-[0.97]"
           >
             {copy.applyNow} →
           </Link>
@@ -85,7 +85,7 @@ export default async function CourseDetailPage({
           </h2>
           <Link
             href="/courses"
-            className="font-basis-grotesque-pro text-[14px] text-terracotta-whisper"
+            className="font-basis-grotesque-pro text-[14px] text-terracotta-whisper transition-colors hover:text-ink-black"
           >
             {copy.careerCta} →
           </Link>

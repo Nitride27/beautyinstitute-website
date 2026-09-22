@@ -22,7 +22,7 @@ export default function JournalCard({ article }: { article: Article }) {
       <span className="mt-1 block font-basis-grotesque-pro text-[13px] text-stone">
         {article.date}
       </span>
-      <span className="mt-2 block font-basis-grotesque-pro text-[14px] text-terracotta-whisper">
+      <span className="mt-2 block font-basis-grotesque-pro text-[14px] text-terracotta-whisper transition-colors group-hover:text-ink-black">
         Read More →
       </span>
     </Link>

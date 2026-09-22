@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { registerGsap, gsap } from "@/lib/gsap";
-import { useIsMobile, usePrefersReducedMotion } from "@/lib/motion-prefs";
+import { useIsMobile, useIsomorphicLayoutEffect, usePrefersReducedMotion } from "@/lib/motion-prefs";
 import { images } from "@/content/images";
 
 interface HeroSlideshowProps {
@@ -17,11 +17,11 @@ interface HeroSlideshowProps {
 }
 
 const SLIDES = [
-  { src: images.archPortrait, alt: "Beauty portrait on a pink background" },
-  { src: images.heroSlide2, alt: "Smiling beauty graduate" },
-  { src: images.heroSlide3, alt: "Smiling woman in a white top" },
-  { src: images.heroSlide4, alt: "Woman in warm sunlight" },
-  { src: images.heroSlide5, alt: "Facial skincare treatment" },
+  { src: images.archPortrait, alt: "Professional skincare kit with jade roller" },
+  { src: images.heroSlide2, alt: "Makeup artist applying lipstick during training" },
+  { src: images.heroSlide3, alt: "Hairdresser styling a client's hair in the salon" },
+  { src: images.heroSlide4, alt: "Therapist pouring aromatic oil for a wellness ritual" },
+  { src: images.heroSlide5, alt: "Professional hairdryer at the styling station" },
 ];
 
 /**
@@ -41,7 +41,7 @@ export default function Hero({ eyebrow, headline, body, ctaLabel, ctaHref }: Her
   const [active, setActive] = useState(0);
   const activeRef = useRef(0);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (still || !root.current) return;
     registerGsap();
     const ctx = gsap.context(() => {
@@ -83,7 +83,7 @@ export default function Hero({ eyebrow, headline, body, ctaLabel, ctaHref }: Her
 
   if (still) {
     return (
-      <section aria-label="Introduction" className="mx-auto w-full max-w-[1200px] px-4 pt-10 md:px-6">
+      <section id="site-hero" aria-label="Introduction" className="mx-auto w-full max-w-[1200px] px-4 pt-10 md:px-6">
         <p className="font-basisgrotesquepro-mono text-[14px] uppercase tracking-[0.056em] text-coral-pop">
           {eyebrow}
         </p>
@@ -95,7 +95,7 @@ export default function Hero({ eyebrow, headline, body, ctaLabel, ctaHref }: Her
         </p>
         <Link
           href={ctaHref}
-          className="mt-5 inline-block rounded-[999px] bg-coral-pop px-[19px] py-[6px] font-basis-grotesque-pro text-[16px] text-pure-white"
+          className="mt-5 inline-block rounded-[999px] bg-coral-pop px-[19px] py-[6px] font-basis-grotesque-pro text-[16px] text-pure-white transition-colors duration-300 hover:bg-ink-black active:scale-[0.97]"
         >
           {ctaLabel} →
         </Link>
@@ -120,6 +120,7 @@ export default function Hero({ eyebrow, headline, body, ctaLabel, ctaHref }: Her
 
   return (
     <section
+      id="site-hero"
       ref={root}
       aria-label="Introduction"
       className="mx-auto grid w-full max-w-[1200px] gap-8 px-4 pt-10 md:grid-cols-2 md:items-center md:px-6"
@@ -137,7 +138,7 @@ export default function Hero({ eyebrow, headline, body, ctaLabel, ctaHref }: Her
         </p>
         <Link
           href={ctaHref}
-          className="mt-5 inline-block rounded-[999px] bg-coral-pop px-[19px] py-[6px] font-basis-grotesque-pro text-[16px] text-pure-white"
+          className="mt-5 inline-block rounded-[999px] bg-coral-pop px-[19px] py-[6px] font-basis-grotesque-pro text-[16px] text-pure-white transition-colors duration-300 hover:bg-ink-black active:scale-[0.97]"
         >
           {ctaLabel} →
         </Link>

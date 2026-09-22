@@ -163,3 +163,22 @@ body {
   background: var(--color-coral-pop);
   color: var(--color-pure-white);
 }
+
+/*
+ * Gentle one-scroll settling for the hero only. Native CSS snap with
+ * `proximity` assists scrolling (settles on the hero) without hijacking it,
+ * so GSAP scroll-scrubbed sequences stay smooth. `.pin-spacer` is the
+ * wrapper ScrollTrigger adds around the hero when pinned on desktop (only
+ * the hero uses pinning); `#site-hero` covers the unpinned mobile/still
+ * variant. Fully off under prefers-reduced-motion (fade-only fallback).
+ */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-snap-type: y proximity;
+  }
+
+  #site-hero,
+  .pin-spacer {
+    scroll-snap-align: start;
+  }
+}

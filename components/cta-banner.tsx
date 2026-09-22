@@ -47,7 +47,7 @@ export default function CTABanner({
         )}
         <Link
           href={ctaHref}
-          className="mt-5 inline-block rounded-[999px] bg-pure-white px-[19px] py-[6px] font-basis-grotesque-pro text-[16px] text-ink-black"
+          className="mt-5 inline-block rounded-[999px] bg-pure-white px-[19px] py-[6px] font-basis-grotesque-pro text-[16px] text-ink-black transition-colors duration-300 hover:bg-ink-black hover:text-pure-white active:scale-[0.97]"
         >
           {ctaLabel} →
         </Link>

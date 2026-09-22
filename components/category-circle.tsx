@@ -29,7 +29,7 @@ export default function CategoryCircle({
       <span className="mt-3 font-basis-grotesque-pro text-[14px] text-ink-black">
         {label}
       </span>
-      <span className="font-basis-grotesque-pro text-[13px] text-terracotta-whisper">
+      <span className="font-basis-grotesque-pro text-[13px] text-terracotta-whisper transition-colors group-hover:text-ink-black">
         Learn More →
       </span>
     </Link>

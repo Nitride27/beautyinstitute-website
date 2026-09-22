@@ -17,14 +17,14 @@ export default function ContactMethodRow({ icon: Icon, label, value, href }: Con
         <span className="block font-basis-grotesque-pro text-[13px] text-stone">
           {label}
         </span>
-        <span className="block font-basis-grotesque-pro text-[14px] text-ink-black">
+        <span className="block font-basis-grotesque-pro text-[14px] text-ink-black group-hover:underline group-hover:underline-offset-4">
           {value}
         </span>
       </span>
     </>
   );
   return href ? (
-    <a href={href} className="flex items-center gap-3">
+    <a href={href} className="group flex items-center gap-3">
       {inner}
     </a>
   ) : (
