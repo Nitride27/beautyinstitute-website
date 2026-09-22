@@ -46,6 +46,10 @@ export default function Hero({ eyebrow, headline, body, ctaLabel, ctaHref }: Her
     // Phones land one photo per scroll gesture: snap the scrubbed progress
     // to the nearest slide when scrolling stops. Desktop keeps the free
     // continuous scrub.
+    // Locks the navbar once the pinned show ends (home only — other
+    // pages keep their persistent bar). onRefresh covers a mid-page reload.
+    const setNavStuck = (v: boolean) =>
+      window.dispatchEvent(new CustomEvent("eclat:nav-stick", { detail: v }));
     const snapPhone = window.matchMedia("(max-width: 767px)").matches;
     // Longer pin on phones so one flick travels roughly one photo interval.
     const pinEnd = snapPhone ? "+=2400" : "+=1600";
@@ -78,6 +82,11 @@ export default function Hero({ eyebrow, headline, body, ctaLabel, ctaHref }: Her
               activeRef.current = i;
               setActive(i);
             }
+          },
+          onLeave: () => setNavStuck(true),
+          onLeaveBack: () => setNavStuck(false),
+          onRefresh: (self) => {
+            if (self.progress >= 1) setNavStuck(true);
           },
         },
       });

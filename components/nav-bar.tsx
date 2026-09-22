@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { copy } from "@/content/copy";
@@ -15,9 +16,49 @@ const links = [
 
 export default function NavBar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/" || pathname === "/beautyinstitute-website";
+  // Home: the bar stays in flow over the hero and locks only after the
+  // pinned show ends (the hero dispatches eclat:nav-stick). Other pages
+  // have no hero, so the bar is persistent from the start.
+  const [stuck, setStuck] = useState(!isHome);
+  const headRef = useRef<HTMLElement>(null);
+  const [ph, setPh] = useState(0);
+
+  useEffect(() => {
+    if (!isHome) {
+      setStuck(true);
+      return;
+    }
+    setStuck(false);
+    const onStick = (e: Event) => setStuck((e as CustomEvent<boolean>).detail);
+    window.addEventListener("eclat:nav-stick", onStick);
+    return () => window.removeEventListener("eclat:nav-stick", onStick);
+  }, [isHome]);
+
+  useEffect(() => {
+    const measure = () => setPh(headRef.current?.offsetHeight ?? 0);
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+
+  const floating = isHome && stuck;
 
   return (
-    <header className="sticky top-0 z-50 mx-auto w-full max-w-[1200px] bg-cream-linen px-4 pb-3 pt-4 md:px-6">
+    <>
+    {floating && <div aria-hidden style={{ height: ph }} />}
+    <header
+      ref={headRef}
+      className={
+        floating
+          ? "fixed inset-x-0 top-0 z-50 bg-cream-linen"
+          : isHome
+            ? "relative mx-auto w-full max-w-[1200px] bg-cream-linen"
+            : "sticky top-0 z-50 mx-auto w-full max-w-[1200px] bg-cream-linen"
+      }
+    >
+    <div className="mx-auto w-full max-w-[1200px] px-4 pb-3 pt-4 md:px-6">
       <nav
         aria-label="Primary"
         className="flex items-center justify-between gap-3"
@@ -87,6 +128,8 @@ export default function NavBar() {
           </motion.div>
         )}
       </AnimatePresence>
+    </div>
     </header>
+    </>
   );
 }
