@@ -58,7 +58,7 @@ export default function NavBar() {
             : "sticky top-0 z-50 bg-cream-linen"
       }
     >
-    <div className="mx-auto w-full max-w-[1200px] px-4 pb-3 pt-4 md:px-6">
+    <div className="w-full px-4 pb-3 pt-4 md:px-6">
       <nav
         aria-label="Primary"
         className="flex items-center justify-between gap-3"
