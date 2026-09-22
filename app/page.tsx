@@ -43,7 +43,14 @@ export default function HomePage() {
   const t = testimonials[ti];
   const reduce = usePrefersReducedMotion();
   const mobile = useIsMobile();
-  const simpleAnim = reduce === true || mobile;
+  // Rich treatment only after mount confirms a desktop viewport. SSR and
+  // first paint render the simple fade everywhere, so phones never flash
+  // the tilted enter state before the mobile flag flips.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  const simpleAnim = reduce === true || mobile || !mounted;
   const mosaicRef = useRef<HTMLDivElement>(null);
   const testiRef = useRef<HTMLElement>(null);
 
