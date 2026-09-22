@@ -54,8 +54,8 @@ export default function NavBar() {
         floating
           ? "fixed inset-x-0 top-0 z-50 bg-cream-linen"
           : isHome
-            ? "relative mx-auto w-full max-w-[1200px] bg-cream-linen"
-            : "sticky top-0 z-50 mx-auto w-full max-w-[1200px] bg-cream-linen"
+            ? "relative bg-cream-linen"
+            : "sticky top-0 z-50 bg-cream-linen"
       }
     >
     <div className="mx-auto w-full max-w-[1200px] px-4 pb-3 pt-4 md:px-6">
