@@ -17,7 +17,7 @@ export default function NavBar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="mx-auto w-full max-w-[1200px] px-4 pt-4 md:px-6">
+    <header className="sticky top-0 z-50 mx-auto w-full max-w-[1200px] bg-cream-linen px-4 pb-3 pt-4 md:px-6">
       <nav
         aria-label="Primary"
         className="flex items-center justify-between gap-3"
