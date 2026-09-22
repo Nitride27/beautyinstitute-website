@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { registerGsap, gsap } from "@/lib/gsap";
-import { useIsMobile, useIsomorphicLayoutEffect, usePrefersReducedMotion } from "@/lib/motion-prefs";
+import { useIsomorphicLayoutEffect, usePrefersReducedMotion } from "@/lib/motion-prefs";
 import { images } from "@/content/images";
 
 interface HeroSlideshowProps {
@@ -26,35 +26,19 @@ const SLIDES = [
 
 /**
  * Mock-faithful split hero with a scroll-driven slideshow in the arch.
- * Desktop: the hero pins while page scroll steps through the five portraits
+ * The hero pins while page scroll steps through the five institute shots
  * — each slides in horizontally with a soft crossfade. Only after the set
  * completes does the page scroll past. Live 01/05 indicator + progress
- * hairline; margin note set straight. Reduced motion / mobile: the static
- * single-arch hero, no pin.
+ * hairline; margin note set straight. Same pinned show on phones and
+ * desktop; reduced motion gets the static single-arch hero, no pin.
  */
 export default function Hero({ eyebrow, headline, body, ctaLabel, ctaHref }: HeroSlideshowProps) {
   const root = useRef<HTMLElement>(null);
   const bar = useRef<HTMLDivElement>(null);
   const reduce = usePrefersReducedMotion();
-  const mobile = useIsMobile();
-  const still = reduce || mobile;
+  const still = reduce;
   const [active, setActive] = useState(0);
   const activeRef = useRef(0);
-  // Phones skip the pinned scroll show — instead the arch auto-plays and
-  // accepts horizontal swipes. Reduced motion stays fully static.
-  const autoplay = mobile && !reduce;
-
-  const step = (d: number) => {
-    const n = (activeRef.current + d + SLIDES.length) % SLIDES.length;
-    activeRef.current = n;
-    setActive(n);
-  };
-
-  useEffect(() => {
-    if (!autoplay) return;
-    const id = setInterval(() => step(1), 4500);
-    return () => clearInterval(id);
-  }, [autoplay, active]);
 
   useIsomorphicLayoutEffect(() => {
     if (still || !root.current) return;
@@ -115,68 +99,19 @@ export default function Hero({ eyebrow, headline, body, ctaLabel, ctaHref }: Her
           {ctaLabel} →
         </Link>
         <div className="mx-auto mt-8 w-[78%] max-w-[420px]">
-          {autoplay ? (
-            <>
-              <div className="relative aspect-[3/4] overflow-hidden rounded-b-[0px] rounded-t-[999px]">
-                <AnimatePresence initial={false}>
-                  <motion.div
-                    key={active}
-                    className="absolute inset-0"
-                    drag="x"
-                    dragConstraints={{ left: 0, right: 0 }}
-                    dragElastic={0.6}
-                    onDragEnd={(_, info) => {
-                      if (info.offset.x < -60) step(1);
-                      else if (info.offset.x > 60) step(-1);
-                    }}
-                    initial={{ x: 90, opacity: 0, scale: 1.04 }}
-                    animate={{ x: 0, opacity: 1, scale: 1 }}
-                    exit={{ x: -90, opacity: 0, scale: 0.98 }}
-                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                  >
-                    <Image
-                      src={SLIDES[active].src}
-                      alt={SLIDES[active].alt}
-                      width={800}
-                      height={1000}
-                      priority={active < 2}
-                      className="absolute inset-0 h-full w-full object-cover"
-                    />
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-              <div className="flex items-baseline justify-between">
-                <p aria-hidden className="mt-2 font-basisgrotesquepro-mono text-[10px] tracking-[0.056em] text-stone">
-                  0{active + 1} / 05
-                </p>
-                <p className="mt-2 font-gascognets text-[16px] italic">
-                  Learn, Practice, Transform
-                </p>
-              </div>
-              <div aria-hidden className="mt-2 h-px bg-mist">
-                <div
-                  className="h-px origin-left bg-ink-black transition-transform duration-500"
-                  style={{ transform: `scaleX(${(active + 1) / SLIDES.length})` }}
-                />
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="relative aspect-[3/4] overflow-hidden rounded-b-[0px] rounded-t-[999px]">
-                <Image
-                  src={SLIDES[0].src}
-                  alt={SLIDES[0].alt}
-                  width={800}
-                  height={1000}
-                  priority
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
-              </div>
-              <p className="mt-3 font-gascognets text-[16px] italic">
-                Learn, Practice, Transform
-              </p>
-            </>
-          )}
+          <div className="relative aspect-[3/4] overflow-hidden rounded-b-[0px] rounded-t-[999px]">
+            <Image
+              src={SLIDES[0].src}
+              alt={SLIDES[0].alt}
+              width={800}
+              height={1000}
+              priority
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          </div>
+          <p className="mt-3 font-gascognets text-[16px] italic">
+            Learn, Practice, Transform
+          </p>
         </div>
       </section>
     );
@@ -205,7 +140,7 @@ export default function Hero({ eyebrow, headline, body, ctaLabel, ctaHref }: Her
         >
           {ctaLabel} →
         </Link>
-        <p className="mt-16 hidden font-basisgrotesquepro-mono text-[10px] tracking-[0.056em] text-stone md:block">
+        <p className="mt-8 font-basisgrotesquepro-mono text-[10px] tracking-[0.056em] text-stone md:mt-16">
           SCROLL →
         </p>
       </div>
